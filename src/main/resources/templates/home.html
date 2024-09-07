@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Diary</title>
+
+    <link th:href="@{/home.css}" href="/home.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="title-font title-color-size">
+        <h2>Travel Diary</h2>
+</div>
+
+<div class="button-location">
+    <button class="button-login" type="button"
+            th:onclick="|location.href='@{/login}'|">
+        로그인
+    </button>
+
+    <button class="button-register" type="button"
+            th:onclick="|location.href='@{/user/add}'|">
+        회원가입
+    </button>
+</div>
+
+
+</body>
+</html>

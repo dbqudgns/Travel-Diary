@@ -1,0 +1,92 @@
+.title {
+    position: relative;
+    left: 400px;
+    font-size: 80px;
+    color: blue;
+}
+
+.title-font {
+    font-family: "East Sea Dokdo", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.sub-title {
+    position: absolute;
+    left: 600px;
+    top: 130px;
+    font-size: 30px;
+}
+
+.form-container {
+    position: absolute;
+    left: 500px;
+    top: 250px;
+}
+
+form {
+    width: 600px;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.write-box {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.field-error {
+    margin-top: 5px;
+    color: red;
+    font-size: 16px;
+}
+
+.button-location {
+    width: 103%;
+    height: 45px;
+    bottom: 210px;
+    left: 800px;
+    text-align: center;
+    display: flex;
+}
+
+.button-home {
+    width: 80%;
+    margin-right: 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    background: #82B3ED;
+    color: #282828;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-cancel {
+    width: 80%;
+    font-size: 30px;
+    font-weight: bolder;
+    background: #82B3ED;
+    color: #282828;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-home:hover, .button-cancel:hover {
+    background: #82B3ED; /* 마우스를 올렸을 때 버튼 색상 변경 */
+    transform: scale(1.05); /* 약간 확대 */
+    box-shadow: 0 10px 15px rgba(15, 10, 227, 0.83);
+    transition: all 0.3s ease-in-out; /* 애니메이션 효과 */
+}

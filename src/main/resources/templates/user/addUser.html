@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/addUser.css}" href="/addUser.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+
+    <title>회원가입</title>
+
+    <script>
+
+        let isIdAvailable = false; //아이디 사용 가능 여부
+        /**
+         * 변수 타입 : let => 변수의 재선언/재할당이 모두 가능하다.
+         * @param loginId
+         */
+
+        function checkId(loginId) {
+            fetch(`/user/api/id-Check?loginId=${loginId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // 사용자 아이디 중복 여부에 따른 로직 구현
+                    const loginIdError = document.getElementById("loginIdError");
+                    /**
+                     * 변수 타입 : const => 변수의 재선언/재할당 모두 불가능하다.
+                     * document.getElementById("loginIdError") : HTML 문서에서 ID가 loginIdError인 요소를 찾아서
+                     * 변수 loginIdError에 저장한다.
+                     */
+
+                    if (data) {
+                        loginIdError.textContent = "사용 가능한 아이디입니다.";
+                        isIdAvailable = true; // 사용 가능한 아이디 => let 변수 재할당
+
+                    } else {
+                        loginIdError.textContent = "이미 사용 중인 아이디입니다.";
+                        isIdAvailable = false; // 사용 불가능한 아이디 => let 변수 재할당
+                    }
+
+                })
+                .catch(error => console.error(error)) //요청 중에 오류 내용을 console(콘솔)에 출력하게 한다.
+        }
+
+        function validateForm(event) {
+            if (!isIdAvailable) { // isIdAvailable : true 일경우 : 이미 사용 중일 경우 (! 적용한 것)
+
+                event.preventDefault(); //폼 제출 방지
+
+                alert("사용 가능한 아이디를 입력하고 중복 확인을 해주세요.");
+                //브라우저에서 팝업 창이 열리고 해당 메시지가 표시된다.
+                //사용자는 확인 버튼을 클릭하면 팝업이 닫힌다.
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+<h1 class="title title-font">Travel Diary 오신것을 환영합니다 !</h1>
+<h4 class="sub-title">회원 정보를 입력해주세요.</h4>
+
+<div class="form-container">
+    <form action="#" th:action th:object="${userDto}" method="post" onsubmit="validateForm(event)">
+        <!-- onsubmit은 HTML 폼요소에서 사용되는 이벤트 속성 : 사용자가 "제출(회원가입 버튼)"을 누를 때 onsubmit 속성에 지정된 JavaScript함수를 호출한다. -->
+
+        <div>
+            <label for="loginId">아이디</label>
+            <input type="text" id="loginId" th:field="*{loginId}" class="write-box" placeholder="아이디를 입력해주세요" onblur = "checkId(this.value)">
+            <!-- onblur 속성은 사용자가 다른 곳을 클릭하거나 탭을 이동할 때 호출되는 이벤트이다.
+             this.value : 현재 input 요소에 입력된 값을 가져온다. -->
+
+            <div id="loginIdError" class="field-error"></div>
+            <div class="field-error" th:errors="*{loginId}">아이디 오류</div>
+        </div>
+
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" th:field="*{password}" class="write-box" placeholder="비밀번호를 입력해주세요">
+            <div class="field-error" th:errors="*{password}">비밀번호 오류</div>
+        </div>
+
+        <div>
+            <label for="name">이름</label>
+            <input type="text" id="name" th:field="*{name}" class="write-box" placeholder="이름을 입력해주세요">
+            <div class="field-error" th:errors="*{name}">이름 오류</div>
+        </div>
+
+        <div class="button-location">
+            <button class="button-home" type="submit">
+                회원가입
+            </button>
+
+            <button class="button-cancel" type="button"
+                    th:onclick="|location.href='@{/}'|">
+                취소
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
