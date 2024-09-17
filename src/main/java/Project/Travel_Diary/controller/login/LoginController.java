@@ -23,9 +23,7 @@ public class LoginController {
 
     //사용자가 로그인을 하기 위해 로그인 화면으로 이동시켜주는 메소드
     @GetMapping("/login")
-    public String loginForm() {
-        return "login/loginForm";
-    }
+    public String loginForm(@ModelAttribute UserLoginDto loginDto) {return "login/loginForm";}
 
     //사용자가 로그인 완료 시 해당 사용자의 정보가 메모리에 있다면 메인화면(로그인 된 메인화면)으로 보내주는 메소드
     @PostMapping("/login")
@@ -52,6 +50,7 @@ public class LoginController {
 
         //세션에 로그인한 사용자 정보를 보관한다. ex : [key : UserSession123| value : loginUser]
         session.setAttribute("UserSession" + loginUser.getId(), loginUser);
+
         /**
          *  사용자의 고유 번호를 넣은 이유는 세션 보관소에 객체가 저장될 때 "UserSession"으로만 설정하면
          *  사이트를 다중 사용자가 로그인 할 시 중복 값으로 저장되기 때문에 구별하기 위해 추가하였다.
