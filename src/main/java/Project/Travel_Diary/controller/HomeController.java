@@ -52,7 +52,7 @@ public class HomeController {
         //세션에 사용자 데이터(정보)가 있으면 로그인된 메인화면으로 이동
         model.addAttribute("user", loginUser);
 
-        return "loginHome";
+        return "/diary/MyDiary";
 
     }
 

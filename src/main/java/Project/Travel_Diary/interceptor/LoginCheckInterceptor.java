@@ -19,12 +19,12 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
         log.info("사용자가 {}를 사용할 수 있는지 확인하기 위해 인터셉터 실행", requestURI);
 
-        //사용자의 JSESSIONID를 통해 세션 저장소에서 세션을 반환
+        //사용자의 JSESSIONID 을 통해 세션 저장소에서 세션을 반환
         HttpSession session = request.getSession(false);
 
         //세션이 없으면 로그인 화면으로 리다이렉트
         if ((session == null)) {
-            response.sendRedirect("/login");
+            response.sendRedirect("/home");
             return false;
         }
 

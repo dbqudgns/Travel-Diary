@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/addUser_login.css}" href="../css/loginForm.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+
     <title>로그인</title>
 </head>
 <body>
 
+<h1 class="title title-font">Travel Diary 오신것을 환영합니다 !</h1>
+<h4 class="sub-title-login">로그인을 위해 가입하신 아이디와 비밀번호를 입력해주세요.</h4>
 
+<div class="form-container">
+
+    <form action="/login" th:action th:object="${loginDto}" method="post">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error-global" th:each="err : ${#fields.globalErrors()}"
+               th:text="${err}">전체 오류 메시지</p>
+        </div>
+
+
+        <div>
+            <label for="loginId">아이디</label>
+            <input type="text" id="loginId" th:field="*{loginId}" class="write-box" placeholder="아이디를 입력해주세요">
+            <div class="field-error" th:errors="*{loginId}">아이디 오류</div>
+        </div>
+
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" th:field="*{password}" class="write-box" placeholder="비밀번호를 입력해주세요">
+            <div class="field-error" th:errors="*{password}">비밀번호 오류</div>
+        </div>
+
+        <div class="button-location">
+            <button class="button-home" type="submit">
+                로그인
+            </button>
+
+            <button class="button-register" type="button"
+                    th:onclick="|location.href='@{/user/add}'|">
+                회원가입
+            </button>
+
+            <button class="button-cancel" type="button"
+                    th:onclick="|location.href='@{/}'|">
+                취소
+            </button>
+        </div>
+    </form>
+
+</div>
 
 </body>
 </html>

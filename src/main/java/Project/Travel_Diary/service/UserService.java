@@ -30,9 +30,9 @@ public class UserService {
 
         Optional<User> userOptional = userRepository.findByLoginId(userLoginDto.getLoginId());
 
-        User user = userOptional.get();
+        User user = userOptional.orElse(null);
 
-        if (user.getPassword().equals(userLoginDto.getPassword())) {
+        if (user != null && user.getPassword().equals(userLoginDto.getPassword())) {
             return user;
         }
         else {
