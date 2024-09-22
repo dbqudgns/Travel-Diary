@@ -1,6 +1,10 @@
+body {
+    overflow: hidden;
+}
+
 .title {
     position: relative;
-    left: 400px;
+    left: 380px;
     font-size: 80px;
     color: blue;
 }
@@ -13,14 +17,21 @@
 
 .sub-title {
     position: absolute;
-    left: 600px;
+    left: 550px;
     top: 130px;
     font-size: 30px;
 }
 
+.sub-title-login {
+    position: absolute;
+    left: 430px;
+    top: 130px;
+    font-size: 25px;
+}
+
 .form-container {
     position: absolute;
-    left: 500px;
+    left: 450px;
     top: 250px;
 }
 
@@ -50,6 +61,12 @@ label {
     font-size: 16px;
 }
 
+.field-error-global {
+    margin-top: -8px;
+    color: red;
+    font-size: 30px;
+}
+
 .button-location {
     width: 103%;
     height: 45px;
@@ -60,6 +77,19 @@ label {
 }
 
 .button-home {
+    width: 80%;
+    margin-right: 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    background: #82B3ED;
+    color: #282828;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-register {
     width: 80%;
     margin-right: 20px;
     font-size: 30px;

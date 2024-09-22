@@ -23,11 +23,11 @@ public class LoginController {
 
     //사용자가 로그인을 하기 위해 로그인 화면으로 이동시켜주는 메소드
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute UserLoginDto loginDto) {return "login/loginForm";}
+    public String loginForm(@ModelAttribute("loginDto") UserLoginDto loginDto) {return "login/loginForm";}
 
     //사용자가 로그인 완료 시 해당 사용자의 정보가 메모리에 있다면 메인화면(로그인 된 메인화면)으로 보내주는 메소드
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute UserLoginDto loginDto, BindingResult bindingResult,
+    public String login(@Valid @ModelAttribute("loginDto") UserLoginDto loginDto, BindingResult bindingResult,
                         HttpServletRequest request, RedirectAttributes redirectAttributes) {
 
         //만약 loginDto에 검증 오류가 있다면 다시 로그인 화면으로 보내주는 조건문
